@@ -1,0 +1,52 @@
+Reduce the dimensionality:
+principal component analysis
+minimum redundancy maximum relevance 
+
+Techniques:
+Random Forest, Neural Networks and Decision tree
+Neural Networks: training computer to perform a task by analyzing training examples.
+Random Forest: Prediction of many decision trees into a single model 
+Decision Tree: Two Types: Classification(Yes/no) and Regression Trees(Continuous Data)
+
+Advantage:
+Random Forest: less computationally expensive, does not require a GPU to finish training. offer a superior method for working with missing data. Missing values are substituted by the variable appearing the most in a particular node.
+* Handle big data with numerous variables running into thousands. It can automatically balance data sets when a cless is more infrequent than other classes in the data.
+Overall, Random forest is a (mostly) fast, simple and flexible tool
+
+Decision Tree: Good for Historical data as it can analyse from it to predict certain outcomes. Allows for demographic data which can help analyse certain correlations between diseases and variables.
+Easier to read and interpret, and less data cleaning required once the variables have been created. 
+* Cases of missing values and outliers have less significance on decision tree's data
+
+Neural networks: Ability to learn from events and make decisions through commenting on similar events.
+* has the ability to perform multiple functions at the same time.
+
+Disadvantages:
+Neural Networks: require much more data than an everyday person might have on hand to be effective
+Neural networks will simply decimate the interpretability of our features to the point where it becomes meaningless for the sake of performance
+
+Decision Tree: Largely unstable compared to other techniques, a small chance in the data can result in a major change in the structure of the tree. which may convey a different result from what users will get in a normal event.(can be fixed using algorithms BOOSTING and BAGGING)
+Less effective in predicting the outcome of a continuous variable as decision trees tend to lose information when categorizing variables into multiple categories.
+
+Random Forest: large number of trees can make the alogrithm too slow and ineffective for real-time predictions. These algorithms are fast to train, but quite slow to create predictions once they are trained. A more accurate prediction requires more trees, which results in a slower model. In most real-world applications, the random forest algorithm is fast enough but there can certainly be situations where run-time performance is important and other approaches would be preferred.
+
+* If the goal is to create a prediction model without care for the variables at play, by all means use a neural network, but you’ll need the resources to do so.
+
+Accuracy:
+77.87% Using a decision tree model
+76.13% Using a logistic regression model
+73.23% Using the artificial neural networks
+
+https://bmcendocrdisord.biomedcentral.com/articles/10.1186/s12902-019-0436-6 (type 2 diabetes)
+https://www.sciencedirect.com/science/article/pii/S1877050920308024
+https://www.xoriant.com/blog/product-engineering/decision-trees-machine-learning-algorithm.html
+
+Summary:
+
+DT A: historical, demographic, discrete data | missing data has less impact
+DT D: unstable, small changes => massive changes (fix by boosting) | less useful for continuous
+
+RF A: cheap on resources, split load | missing data has very little impact
+RF D: accurate predictions require many trees, fast to train, slow to predict
+
+NN A: can learn and improve quickly over time from initial training data
+NN D: requires large initial dataset for training and testing | may require lots of initial human training and knowledge engineering

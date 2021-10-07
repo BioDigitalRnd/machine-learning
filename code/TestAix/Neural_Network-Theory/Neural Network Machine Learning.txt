@@ -1,0 +1,26 @@
+Components of a neural network:
+input layer
+Hidden layer - computation/calculation
+Output layer
+Weights and Bias
+Activation function
+Loss Function
+
+Layers:
+Are used to hold the neurons(input point) and pass it onto the subsequent layers
+
+Activation Function: 
+Computers the output from the weighted sum of the inputs 
+
+Uses sigma function as it ends with a result being 0 and 1
+Output would be calculated using the Activation function
+
+Feedforward and Backpropagation:
+Feedforward - getting the initial output is the feedforward process in a neural network
+Backpropagation - is used to update the weights in order to minimize the calculated error
+
+Calculate the error -> Use gradient descent Algo -> Update weights -> Update Bias -> Do this for n number of iterations for accuracy 
+
+Training a neural network:
+We can implement a neural network in Python using NumPy
+

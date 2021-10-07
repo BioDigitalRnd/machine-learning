@@ -56,13 +56,14 @@ clf.predict([[2., 2.], [-1., -2.]])
 # names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
 # dataset = read_csv(url, names=names)
 
+
 # tag = [ 'Slept well yesterday?', 'Yesterday was stressful?' ]
 # columns = [4,5]
 # datset = read_csv(path, names=tag, usecols= columns, header=1)
 # path = r"C:\Users\Aixzyl\Documents\Python\diabetes.csv"
 # dataset1 = pd.read_csv(path)
 # X=dataset1.iloc[:,0:8]
-# y=dataset1.iloc[:,8]
+# y=dataset1.iloc[:,8] リドルはほんとにばかだったのも一回リドルが喋って笑ったが　
 
 
 # print(X.shape)

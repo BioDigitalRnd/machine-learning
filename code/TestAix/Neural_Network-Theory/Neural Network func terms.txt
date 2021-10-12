@@ -1,0 +1,8 @@
+Transpose = rearrange the arrays input and weights
+|First make the array into Numpy array(np.array) then Transpose by adding .T at the end	  
+  			  
+- Batch Size will alter the best fit line to best predict:
+lower batch size will move around more when more data is given compared to a higher batch size
+
+ Sum, exp, 
+

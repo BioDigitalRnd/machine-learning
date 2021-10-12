@@ -41,19 +41,29 @@ Bias = Vector
 
 out = weight * input + bias similar to (as it is used to predict something)
 y = mx + c
+This is what's fed to the Rectified Linear Activation Function
+Generally your hidden layers have a different activation function compared to your output layer
+y = { x: x > 0  }
+    { 0: x <= 0 }
 
-Tuning the bias in such a way to train the neuron
-so it can accurately predict if a new data is given
+* This would show the point that weights and biases, weights flipping the sign or biases offsetting enough in such a way
+that you get this grandlier output
 
-a = [1, 2, 3]
-b = [2, 3, 4]
+Sigmoid Functions occurs after the out function has been executed
+We use a Sigmoid function instead of just the step function because we will not find out how close we are from 0 or 1
+with the Step function so we use sigmoid as it is more reliable to train
 
-dot_product(.dot) = a[0] * b[0] + a[1] * b[1] + a[2] * b[2] 
-  			  = 20
-  			  a . b = [1,2,3] . [2,3,4] = 1.2 + 2.3 + 3.4 = 20
-  			  
-  			  
-- Batch Size will alter the best fit line to best predict:
-lower batch size will move around more when more data is given compared to a higher batch size
++ Why We use Sigmoid Function ?
+- if we just use weight and biases for our alogorithm y = x linear activation all the outputs would be linear
+if we try to fit a linear activation function to a non linear function like a sine wave it wouldn't fit
+- Rectified Linear Activation Function(ReLU) would fit better even with the same hidden layers and amount of neurons as it
+is almost linear 
 
- Sum, exp, 
+How does ReLU work:
+- with a single neuron (increasing the weight will strengthen the input, then bias can offset the activation point moving it horizontally)
+if we negate the weight we can flip the ReLU activation from determining how the input activates but instead how the input deactivates
+- top 7 neuron pairs will be adjusted to fit the (sine)shape
+whilst the bottom pair will solely work on offsetting the function
+* That's why to fit non linear problems we need two or more hidden layers and with those two hidden layers that's why we use non linear 
+activation functions
+

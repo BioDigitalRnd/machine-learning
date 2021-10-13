@@ -59,6 +59,7 @@ if we try to fit a linear activation function to a non linear function like a si
 - Rectified Linear Activation Function(ReLU) would fit better even with the same hidden layers and amount of neurons as it
 is almost linear 
 
+
 How does ReLU work:
 - with a single neuron (increasing the weight will strengthen the input, then bias can offset the activation point moving it horizontally)
 if we negate the weight we can flip the ReLU activation from determining how the input activates but instead how the input deactivates
@@ -66,4 +67,12 @@ if we negate the weight we can flip the ReLU activation from determining how the
 whilst the bottom pair will solely work on offsetting the function
 * That's why to fit non linear problems we need two or more hidden layers and with those two hidden layers that's why we use non linear 
 activation functions
+
+Input -> Exponentiate -> Normalize -> Output
+         (         Softmax          )
+
+
+
+
+
 

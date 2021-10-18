@@ -1,0 +1,25 @@
+Heart Failure(Cardiovascular disease) = Machine learning alogirthms showed that creatinine and ejection fraction as the two relevant features that cause cardiovascular disease
+
+https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-020-1023-5
+
+Parkingson's Disease = Use of Learning models
+* neural networks (n = 76 from 62 studies
+* ensemble learning (n = 82 from 57 studies)
+* nearest neighbor and variants (n = 33 from 33 studies)
+* regression (n = 31 from 31 studies)
+* decision tree (n = 28 from 27 studies)
+* naïve Bayes (n = 26, from 26 studies)
+
+https://www.frontiersin.org/articles/10.3389/fnagi.2021.633752/full#T3
+
+data useful for Parkingson's:
+Tremor data 
+Voice data 
+
+https://braininformatics.springeropen.com/articles/10.1186/s40708-020-00113-1
+
+Arthritis = 
+
+Asthma
+
+

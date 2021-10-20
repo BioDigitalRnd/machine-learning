@@ -20,6 +20,15 @@ https://braininformatics.springeropen.com/articles/10.1186/s40708-020-00113-1
 
 Arthritis = 
 
-Asthma
+MRI scans
+
+-  One study showed that ML could be helpful to assess flares using data from electronic medical records (EMR) of RA patients. EMR data typically are larger in size than data collected in clinical studies but are of lower quality, which may have hampered model training in this project.
+
+https://arthritis-research.biomedcentral.com/articles/10.1186/s13075-021-02439-5
+
+
+
+Asthma =
+
 
 

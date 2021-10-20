@@ -1,4 +1,5 @@
 #cmd
+# pip install quandl
 # pip  install numpy
 # pip install nnfs
 import math
@@ -8,10 +9,131 @@ import numpy as np
 import matplotlib
 import nnfs
 from nnfs.datasets import spiral_data
+from numpy.lib.function_base import average
 
-np.random.seed(0)
+softmax_outputs = np.array([[0.7, 0.1, 0.2],
+                            [0.1, 0.5, 0.4],
+                            [0.02, 0.9, 0.08]])
+
+# class_targets = [0, 1, 1]
+
+# print(-np.log(softmax_outputs[[0, 1, 2], [class_targets]]))
+
+
+
+
+
+# softmax_output = [0.7, 0.1, 0.2]
+# target_output = [1, 0, 0]
+
+# loss = -(math.log(softmax_output[0])* target_output[0] + 
+#          math.log(softmax_output[1])* target_output[1] + 
+#          math.log(softmax_output[2])* target_output[2])
+
+# print(loss)
+# loss = -math.log(softmax_output[0]) # negative log
+# print(loss)
+
+
+
+
+
+
+
+
+# np.random.seed(0)
 
 # nnfs.init()
+
+# X = [[1, 2, 3, 2.5],
+#     [2.0, 5.0, -1.0, 2.0],
+#     [-1.5, 2.7, 3.3, -0.8]]
+
+# # X, y = spiral_data(100, 3) #100 data sets of 3 classes
+
+
+class Layer_Dense:
+    def __init__(self, n_inputs, n_neurons):
+        self.weights = 0.10 * np.random.randn(n_inputs, n_neurons) #create a weight from n input and num of neurons
+        # 0.1 * because we want it close to generate a number near 0
+        self.biases = np.zeros((1, n_neurons)) #both self.weight n biases return a matrix
+    def forward(self, inputs): #Input being either from sensors if first hidden layer or self.output from previous layer
+        self.output = np.dot(inputs, self.weights) + self.biases
+
+class Activation_ReLU:
+    def forward(self, inputs):
+        self.output = np.maximum(0, inputs)
+
+class Activation_Softmax:
+    def forward(self, inputs):
+        exp_values = np.exp(inputs - np.max(inputs, axis= 1, keepdims=True))
+        probabilities = exp_values / np.sum(exp_values, axis=1, keepdims=True)
+        self.output = probabilities
+
+class Loss:
+    def calculate(self, output, y):
+        sample_losses = self.forward(output,y)
+        data_loss = np.mean(sample_losses)
+        return data_loss
+
+class Loss_CategoricalCrossentropy(Loss):
+    def forward(self, y_pred, y_true):
+        samples = len(y_pred)
+        y_pred_clipped = np.clip(y_pred, 1e-7, 1-1e-7)
+        
+        if len(y_true.shape) == 1:
+            correct_confidences = y_pred_clipped[range(samples), y_true]
+        
+        elif len(y_true.shape) == 2:
+            correct_confidences =  np.sum(y_pred_clipped*y_true, axis=1)
+
+        negative_log_likelihoods = -np.log(correct_confidences)
+        return negative_log_likelihoods
+
+        [1,0,1,1]
+        [[0,1], [1,0]]
+
+X,y = spiral_data(samples=100, classes=3)
+
+dense1 = Layer_Dense(2,3)
+activation1 = Activation_ReLU()
+
+dense2 = Layer_Dense(3, 3)
+activation2 = Activation_Softmax()
+
+dense1.forward(X)
+activation1.forward(dense1.output)
+
+dense2.forward(activation1.output)
+activation2.forward(dense2.output)
+
+print(activation2.output[:5])
+
+loss_function = Loss_CategoricalCrossentropy()
+loss = loss_function.calculate(activation2.output, y)
+
+print("Loss:", loss)
+
+
+#np. argmax = gets the highest value in array in the each row
+
+
+# layer1 = Layer_Dense(2, 5) #Input size X is 4 and output = 5
+# activation1 = Activation_ReLU() # Produce the activation for the entire layer
+# # layer2 = Layer_Dense(5, 2) #output from layer 1 is the input for layer 2 therefore input = 5
+#　
+
+# layer1.forward(X)
+# activation1.forward(layer1.output)
+# print(activation1.output)
+
+
+
+
+
+
+
+
 
 # layer_outputs = [[4.8, 1.21, 2.385],
 #                 [8.9, -1.81, 0.2],
@@ -32,7 +154,7 @@ np.random.seed(0)
 
 # print(exp_values)
 
-#Normalization of the sum of exp values
+# # Normalization of the sum of exp values
 # norm_base = sum(exp_values) 
 # norm_values = []
 
@@ -43,35 +165,6 @@ np.random.seed(0)
 # print(sum(norm_values))
 
 
-
-
-
-X = [[1, 2, 3, 2.5],
-    [2.0, 5.0, -1.0, 2.0],
-    [-1.5, 2.7, 3.3, -0.8]]
-
-X, y = spiral_data(100, 3) #100 data sets of 3 classes
-
-
-class Layer_Dense:
-    def __init__(self, n_inputs, n_neurons):
-        self.weights = 0.10 * np.random.randn(n_inputs, n_neurons) #create a weight from n input and num of neurons
-        # 0.1 * because we want it close to generate a number near 0
-        self.biases = np.zeros((1, n_neurons)) #both self.weight n biases return a matrix
-    def forward(self, inputs): #Input being either from sensors if first hidden layer or self.output from previous layer
-        self.output = np.dot(inputs, self.weights) + self.biases
-
-class Activation_ReLU:
-    def forward(self, inputs):
-        self.output = np.maximum(0, inputs)
-
-layer1 = Layer_Dense(2, 5) #Input size X is 4 and output = 5
-activation1 = Activation_ReLU() # Produce the activation for the entire layer
-# layer2 = Layer_Dense(5, 2) #output from layer 1 is the input for layer 2 therefore input = 5
-
-layer1.forward(X)
-activation1.forward(layer1.output)
-print(activation1.output)
 
 
 

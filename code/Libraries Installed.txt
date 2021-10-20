@@ -9,6 +9,7 @@ pip install -U matplotlib
 pip install seaborn
 pip install pymongo
 pip install pandas
+pip install pandas matplotlib
 pip install openpyxl
 pip install xlrd
 

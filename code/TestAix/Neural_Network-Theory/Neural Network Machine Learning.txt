@@ -24,3 +24,45 @@ Calculate the error -> Use gradient descent Algo -> Update weights -> Update Bia
 Training a neural network:
 We can implement a neural network in Python using NumPy
 
+Save a model:
+When you save a model you save the weights and the biases
+
+Calculating Loss with Categirucak Cross-Entropy:
+Li = -log(yi,k)
+
+Li - Sample loss value     y - Predicted values
+i - i-th sample in a set
+k - target label index, index of correct class probability
+
+One-hot encoding:
+* n Classes long
+e.g.
+Classes: 2
+Label: 0
+One-hot: [1,0] (index = 1)
+
+e.g. 2
+classes: 4
+label: 1
+One-hot: [0,1,0,0]
+
+Logarithm:
+solving for x
+e ** x = b
+
+b = 5.2
+
+print(np.log(b))
+print(math.e ** 1.648658625587816)
+
+# 8:30 ep 7 restudy
+
+
+
+
+
+
+
+
+
+

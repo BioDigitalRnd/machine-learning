@@ -1,0 +1,17 @@
+pip install quandl
+pip  install numpy
+pip install nnfs
+pip install pydotplus
+pip install -U scikit-learn
+pip install ipython
+pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+pip install -U matplotlib
+pip install seaborn
+pip install pymongo
+pip install pandas
+pip install openpyxl
+pip install xlrd
+
+
+
+# install mongodb extension on vscode

@@ -1,0 +1,51 @@
+Heart Failure(Cardiovascular disease) = Machine learning algorithms showed that creatinine and ejection fraction as the two relevant features that cause cardiovascular disease
+
+https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-020-1023-5
+
+Parkinson's Disease = Use of Learning models
+* neural networks (n = 76 from 62 studies
+* ensemble learning (n = 82 from 57 studies)
+* nearest neighbour and variants (n = 33 from 33 studies)
+* regression (n = 31 from 31 studies)
+* decision tree (n = 28 from 27 studies)
+* naïve Bayes (n = 26, from 26 studies)
+
+https://www.frontiersin.org/articles/10.3389/fnagi.2021.633752/full#T3
+
+data useful for Parkinson's:
+
+*highest accuracy in PD detection using offline data was from:
+
+Tremor data 98.5%
+Voice data 98.3%
+
+- The average accuracy of PD detection becomes 99.8% when ensemble averaging was performed on majoriy-vote from kNN, SVM, and NB
+
+(kNN) k-neighbors - gave the highest accuracy
+(SVM) Support Vector Machine
+(NB) Naive Bayes
+
+https://braininformatics.springeropen.com/articles/10.1186/s40708-020-00113-1
+
+Arthritis(Rheumatoid Arthritis[RA]) = 
+
+- Medication played a minor role in prediction of RA disease activity
+
+https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0252289
+
+MRI scans
+
+-  One study showed that ML could be helpful to assess flares using data from electronic medical records (EMR) of RA patients. EMR data typically are larger in size than data collected in clinical studies but are of lower quality, which may have hampered model training in this project.
+
+https://arthritis-research.biomedcentral.com/articles/10.1186/s13075-021-02439-5
+
+
+Asthma = capillary blood lead testing was an important predictor of persistent asthma
+
+* naive Bayes model had poorer performance. 
+* XGBoost, Random forest, and logistic regression performed best
+* K-nearest neighbor performed better than naive Baynes but not as well as the others
+
+https://www.ajmc.com/view/machine-learning-can-help-predict-persistence-of-asthma-as-children-age
+
+https://bmjopen.bmj.com/content/10/7/e036099(figure for methodology)

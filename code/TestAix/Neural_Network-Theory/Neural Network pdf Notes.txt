@@ -1,0 +1,44 @@
+CP: 50
+
+
+Dense layers: (most common layers) [page 10]
+- consist of interconnected neurons
+* In a dense layer, each neuron of a given layer is connected to every neuron of the next layer
+- each connection has a weight associated to it which is a trainable factor of how much of this input to use (weight * input)
+- once the inputs-weights flow into our neuron, they are summed and a bias is added
+* purpose  of this bias is to offset the output positively or negatively
+{ y = mx + c }
+
+Step Function: 
+- mimic a neuron firing/not in the brain.
+if sum(inputs*weights) + bias is > 0 neuron fires
+else neuron doesn't fire
+
+
+^ Goal of all neural networks is to generalize, meaning the network can see many examples of never-before-seen data and accurately output the values we hope to achieve
+
+Neural Networks take in many samples at a time for two reasons:
+
+* faster to train in btaches in parallel processing
+* batches help with generalization during training
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

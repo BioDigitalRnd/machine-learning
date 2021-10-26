@@ -9,36 +9,6 @@ Output = (input * weight + bias))
 Output layer : taking input from one of the Hidden layer not from sensors but still output the same stuff
 output = inputs[0] * Weights[0] + inputs[1] * Weights[1] + inputs[2] * Weights[2] + bias 
 
-* shape = what the size is at that dimension
-	Array:                  	     Shape:
-		1 = [1,5,6,2]       		    (4,)
-		
-		  					Type: 1D array, Vector
-		  					if simple list in python then its a 
-		  					1D array in numpy and its a Vector in maths
-		  		
-	Array:              			Shape:
-		lol =     [[1,5,6,2],		     (2, 4)
-	(list of Lists) [3,2,1,3]]
-
-							Type: 2D array, Matrix(Rectangular Array)
-									  		
-	Array:              			Shape:
-		lolol =     [[[1,5,6,2],		(3, 2, 4)
-	(list of Lists     [3,2,1,3]]
-	 of lists)        [[5,2,1,2],
-	 			   [6,4,8,4]],
-	 			  [[2,8,5,3],
-	 			   [1,1,9,4]]]
-	
-							Type: 3D array
-
-Tensor Flow : an object that can be represented as an array
-
-Input =  Vector
-Weight = Vector
-Bias = Vector
-
 out = weight * input + bias similar to (as it is used to predict something)
 y = mx + c
 This is what's fed to the Rectified Linear Activation Function
@@ -70,6 +40,7 @@ activation functions
 
 Input -> Exponentiate -> Normalize -> Output
          (         Softmax          )
+
 
 
 

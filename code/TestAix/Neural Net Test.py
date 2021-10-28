@@ -54,8 +54,8 @@ softmax_outputs = np.array([[0.7, 0.1, 0.2],
 
 class Layer_Dense:
     def __init__(self, n_inputs, n_neurons):
-        self.weights = 0.10 * np.random.randn(n_inputs, n_neurons) #create a weight from n input and num of neurons
-        # 0.1 * because we want it close to generate a number near 0
+        self.weights = 0.01 * np.random.randn(n_inputs, n_neurons) #create a weight from n input and num of neurons
+        # 0.1 * because we want it close to generate a number near 0 Gaussian distribution
         self.biases = np.zeros((1, n_neurons)) #both self.weight n biases return a matrix
     def forward(self, inputs): #Input being either from sensors if first hidden layer or self.output from previous layer
         self.output = np.dot(inputs, self.weights) + self.biases
@@ -70,28 +70,28 @@ class Activation_Softmax:
         probabilities = exp_values / np.sum(exp_values, axis=1, keepdims=True)
         self.output = probabilities
 
-class Loss:
-    def calculate(self, output, y):
-        sample_losses = self.forward(output,y)
-        data_loss = np.mean(sample_losses)
-        return data_loss
+# class Loss:
+#     def calculate(self, output, y):
+#         sample_losses = self.forward(output,y)
+#         data_loss = np.mean(sample_losses)
+#         return data_loss
 
-class Loss_CategoricalCrossentropy(Loss):
-    def forward(self, y_pred, y_true):
-        samples = len(y_pred)
-        y_pred_clipped = np.clip(y_pred, 1e-7, 1-1e-7)
+# class Loss_CategoricalCrossentropy(Loss):
+#     def forward(self, y_pred, y_true):
+#         samples = len(y_pred)
+#         y_pred_clipped = np.clip(y_pred, 1e-7, 1-1e-7)
         
-        if len(y_true.shape) == 1:
-            correct_confidences = y_pred_clipped[range(samples), y_true]
+#         if len(y_true.shape) == 1:
+#             correct_confidences = y_pred_clipped[range(samples), y_true]
         
-        elif len(y_true.shape) == 2:
-            correct_confidences =  np.sum(y_pred_clipped*y_true, axis=1)
+#         elif len(y_true.shape) == 2:
+#             correct_confidences =  np.sum(y_pred_clipped*y_true, axis=1)
 
-        negative_log_likelihoods = -np.log(correct_confidences)
-        return negative_log_likelihoods
+#         negative_log_likelihoods = -np.log(correct_confidences)
+#         return negative_log_likelihoods
 
-        [1,0,1,1]
-        [[0,1], [1,0]]
+#         [1,0,1,1]
+#         [[0,1], [1,0]]
 
 X,y = spiral_data(samples=100, classes=3)
 
@@ -109,13 +109,14 @@ activation2.forward(dense2.output)
 
 print(activation2.output[:5])
 
-loss_function = Loss_CategoricalCrossentropy()
-loss = loss_function.calculate(activation2.output, y)
+# loss_function = Loss_CategoricalCrossentropy()
+# loss = loss_function.calculate(activation2.output, y)
 
-print("Loss:", loss)
+# print("Loss:", loss)
 
 
 #np. argmax = gets the highest value in array in the each row
+#
 
 
 # layer1 = Layer_Dense(2, 5) #Input size X is 4 and output = 5
@@ -163,6 +164,56 @@ print("Loss:", loss)
 
 # print(norm_values)
 # print(sum(norm_values))
+
+
+
+
+
+# Calculating Loss using Categorical cross-entropy
+
+# softmax_output = [0.7, 0.1, 0.2]
+# #Ground truth
+# target_output = [1, 0, 0]
+
+# loss = -(math.log(softmax_output[0]) * target_output[0] +
+#          math.log(softmax_output[1]) * target_output[1] +
+#          math.log(softmax_output[2]) * target_output[2])
+
+# print(loss) 
+
+
+
+
+
+
+# #Confidence Scores
+
+# softmax_outputs = np.array([[0.7, 0.1, 0.2], #0th index 0.7 confidence score that this observation is a dog
+#                    [0.1, 0.5, 0.4],
+#                    [0.02, 0.9, 0.08]]) #2nd index 0.9 confidence score that this is a cat
+
+# class_target = [0,1,1] #Dog, Cat, Cat
+
+# # print(softmax_outputs[[0, 1, 2], class_target])
+
+
+
+# # for targ_idx, distribution in zip(class_target, softmax_outputs): 
+# #     print(distribution[targ_idx])
+
+# #Returns a list of confidences at the target class
+# # print(softmax_outputs[
+# #     range(len(softmax_outputs)), class_target # Range of the softmax_outputs so we don't need to input the values ourselves
+# # ])
+
+# #apply negative log to this list
+# neg_log = -np.log(softmax_outputs[
+#             range(len(softmax_outputs)), class_target
+# ])
+# average_loss = np.mean(neg_log)
+# print(average_loss)
+
+
 
 
 

@@ -5,7 +5,8 @@ import sys
 import numpy as np
 import matplotlib
 import nnfs
-from nnfs.datasets import spiral_data
+import matplotlib.pyplot as plt
+from nnfs.datasets import spiral_data, vertical_data
 from numpy.lib.function_base import average
 
 
@@ -31,13 +32,7 @@ class Activation_SoftMax:
         self.output = probabilities
 
 
-# X, y = spiral_data(samples = 100, classes = 3)
 
-# dense1 = Layer_Dense(2,3)
-# activation1 = Activation_ReLU()
-
-# dense2 = Layer_Dense(3,3)
-# activation2 = Activation_SoftMax()
 
 # # Makes a Forward pass of the training data into the first dense layer
 # dense1.forward(X)
@@ -50,13 +45,13 @@ class Activation_SoftMax:
 
 # print(activation2.output[ :5]) # Sees the first five samples
 
-softmax_outputs =  np.array([[0.7, 0.1, 0.2],
-                             [0.1, 0.5, 0.4],
-                             [0.02, 0.9, 0.08]])
+# softmax_outputs =  np.array([[0.7, 0.1, 0.2],
+#                              [0.1, 0.5, 0.4],
+#                              [0.02, 0.9, 0.08]])
 
-class_targets = np.array([[1, 0, 0],
-                          [0, 1, 0],
-                          [0, 1, 0]])
+# class_targets = np.array([[1, 0, 0],
+#                           [0, 1, 0],
+#                           [0, 1, 0]])
 
 # Common loss class
 class Loss:
@@ -107,9 +102,155 @@ class Loss_CategoricalCrossentropy(Loss): # Inherits from Loss class and perform
         return negative_log_likelihoods
 
 
+
+# # Create dataset
+# X, y = spiral_data(samples = 100, classes = 3)
+
+# # Create Dense layer with 2 input features and 3 output values
+# dense1 = Layer_Dense(2,3)
+# # Create ReLu Activation (to be used with Dense Layer):
+# activation1 = Activation_ReLU() 
+
+# # Create second Dense layer with 3 input features (as we take output of previous layer) and 3 output vals
+# dense2 = Layer_Dense(3,3)
+
+# # Create Softmax Activation (To be used with Dense layer):
+# activation2 = Activation_SoftMax()
+
+# # Create Loss function
+# loss_function = Loss_CategoricalCrossentropy()
+
+# # Perform a forward pass of our training data through this layer
+# dense1.forward(X)
+
+# # Perform a forward pass through activation function
+# # it takes the output of first dense layer here
+# activation1.forward(dense1.output)
+
+# # Perform a forward pass through second Dense layer
+# # it takes outputs of activation function of first layer as inputs
+# dense2.forward(activation1.output)
+
+# # Perform a forward pass through activation function
+# # it takes the output of second dense layer here
+# activation2.forward(dense2.output)
+
+# # Output of first few samples:
+# print(activation2.output[: 5])
+
+
+# # Perform a forward pass through loss function
+# # it takes the output of second dense layer here and returns loss
+# loss = loss_function.calculate(activation2.output, y) 
+
+# # Outputs 0.33 since model is random and its average loss is also not great for these data
+
+# # print loss value
+# print('loss', loss)
+
+
+# # Accuracy Calculations
+
+# # Probabilities of 3 samples
+# softmax_outputs = np.array([[0.7, 0.2, 0.1],
+#                             [0.5, 0.1, 0.4],
+#                             [0.02, 0.9, 0.08]])
+# # Target (ground-truth) labels for 3 samples
+# class_targets = np.array([0, 1, 1])
+
+# # # Calculate values along second axis (axis of index 1)
+# # predictions = np.argmax(softmax_outputs, axis=1)
+# # # If targets are one-hot encoded - convert them
+# # if len(class_targets.shape) == 2:
+# #     class_targets = np.argmax(class_targets, axis=1)
+# # # True evaluates to 1; False to 0
+# # accuracy = np.mean (predictions == class_targets)
+
+# # print('acc:', accuracy)
+
+# # Calculate accuracy from output from activation2 and targets
+# # calculate values along first axis
+# predictions = np.argmax(activation2.output, axis=1)
+# if len(y.shape) == 2:
+#     y = np.argmax(y, axis=1)
+# accuracy = np.mean(predictions==y)
+
+# # Print accuracy
+# print('acc:', accuracy)
+
+
+# Rando Weights and Biases
+
+nnfs.init()
+
+X, y = vertical_data(samples=100, classes=3)
+
+# Create Model
+dense1 = Layer_Dense(2, 3) # first dense layer, 2 inputs, 3 outputs
+activation1 = Activation_ReLU()
+dense2 = Layer_Dense(3, 3) # second dense layer, 3 inputs, 3 outputs
+activation2 = Activation_SoftMax()
+
+# Create Loss function
 loss_function = Loss_CategoricalCrossentropy()
-loss = loss_function.calculate(softmax_outputs, class_targets)
-print(loss)
+
+# Helper variables
+lowest_loss = 9999999 # Some initial value
+best_dense1_weights = dense1.weights.copy()
+best_dense1_biases = dense1.biases.copy()
+best_dense2_weights = dense2.weights.copy()
+best_dense2_biases = dense2.biases.copy()
+
+
+# We initialize the loss to a large value and will decrease it when a new, lower, loss is found
+for iteration in range(10000):
+
+    # Generate a new set of weights for iteration 
+    dense1.weights = 0.05 * np.random.randn(2, 3)
+    dense1.biases = 0.05 * np.random.randn(1, 3)
+    dense2.weights = 0.05 * np.random.randn(3, 3)
+    dense2.biases = 0.05 * np.random.randn(1, 3)
+
+    # Perform a forward pass of the training data through this layer
+    dense1.forward(X)
+    activation1.forward(dense1.output)
+    dense2.forward(activation1.output)
+    activation2.forward(dense2.output)
+
+    # Perform a forward pass through activation layer
+    # It takes the output of second dense layer here and returns loss
+    loss = loss_function.calculate(activation2.output, y)
+
+1
+    # Calculate accuracy from output of activation2 and targets
+    # Calculate values along first axis
+    predictions = np.argmax(activation2.output, axis=1)
+    accuracy = np.mean(predictions==y)
+
+    # If loss is smaller - print and save weights and biases aside
+    if loss < lowest_loss:
+        print('New set of weights found, iteration:' iteration, 
+              'loss', loss, 'acc:', accuracy)
+
+
+
+
+
+plt.scatter(X[:, 0], X[:, 1], c=y, s=40, cmap='brg')
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

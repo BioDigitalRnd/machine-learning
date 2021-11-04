@@ -51,6 +51,7 @@ softmax_outputs = np.array([[0.7, 0.1, 0.2],
 
 # # X, y = spiral_data(100, 3) #100 data sets of 3 classes
 
+#
 
 class Layer_Dense:
     def __init__(self, n_inputs, n_neurons):
@@ -103,6 +104,7 @@ activation2 = Activation_Softmax()
 
 dense1.forward(X)
 activation1.forward(dense1.output)
+
 
 dense2.forward(activation1.output)
 activation2.forward(dense2.output)
@@ -180,6 +182,73 @@ print(activation2.output[:5])
 #          math.log(softmax_output[2]) * target_output[2])
 
 # print(loss) 
+
+
+
+
+# Calculating Losses
+
+# softmax_outputs =  np.array([[0.7, 0.1, 0.2],
+#                              [0.1, 0.5, 0.4],
+#                              [0.02, 0.9, 0.08]])
+
+# class_targets = np.array([[1, 0, 0],
+#                           [0, 1, 0],
+#                           [0, 1, 0]])
+
+# # Common loss class
+# class Loss:
+
+#     # Calculates the data and regularization losses 
+#     # given model output and ground truth values
+#     def calculate(self, output, y):
+
+#         # Calculate sample losses
+#         sample_losses = self.forward(output, y)
+
+#         # Calculate mean loss
+#         data_loss = np.mean(sample_losses)
+
+#         # Return Loss
+#         return data_loss
+
+# # Cross-entropy loss
+# class Loss_CategoricalCrossentropy(Loss): # Inherits from Loss class and performs all the error calculations and can be used as an object
+
+#     # Forward Pass
+#     def forward(self, y_pred, y_true):
+
+#         # Number of samples in a batch
+#         samples = len(y_pred) 
+
+#         # Clip data to prevent division by 0 
+#         # Clip both sides to not drag mean towards any value
+#         y_pred_clipped = np.clip(y_pred, 1e-7, 1 - 1e-7)
+
+#         # Probability for target values - 
+#         # Only if categorical labels
+#         if len(y_true.shape) == 1:
+#             correct_confidences = y_pred_clipped[
+#                 range(samples), 
+#                 y_true
+#             ]
+
+#         # Mask values - only for one-hot encoded labels
+#         elif len(y_true.shape) == 2:
+#             correct_confidences = np.sum(
+#                 y_pred_clipped * y_true,
+#                 axis=1
+#             )
+
+#         # Losses
+#         negative_log_likelihoods = -np.log(correct_confidences)
+#         return negative_log_likelihoods
+
+
+# loss_function = Loss_CategoricalCrossentropy()
+# loss = loss_function.calculate(softmax_outputs, class_targets)
+# print(loss)
+
 
 
 

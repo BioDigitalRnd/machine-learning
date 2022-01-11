@@ -93,19 +93,8 @@ def meanImplementer(count):
     # print(X_TrainMean) # Gets the mean value of the columns
 # print(X_train)
 # print(Y_train)
-# ~bgm playing~ ~yume ha seikai no kibou, robers paradise~
-# jishin ga wakuwaku surunda, 'kore ha sugoi desu ne'
-# un sou shutsuen ga subarashi! ~~fin~~
-# ah onaka tsuita, boku mo 
 
 
-
-
-
-
-
-# in an instant the boy continues his way forward, down the pavement he see's people down an alley way ruggid and bruised 'what pityful soul's they must have seen what demised feels like'
-# the two men jogged away, behind them an elderly women yelling at them 'you better stop coming round my area or there will be real repucusions'
 
 
 
